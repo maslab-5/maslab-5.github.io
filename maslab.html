@@ -1,0 +1,216 @@
+<style>
+    body {
+        background: linear-gradient(-45deg, #eea852, #e73c7e, #23a6d5, #77e4cb);
+        background-size: 300% 300%;
+        animation: gradient 10s ease infinite;
+    }
+
+    #subWindow {
+        margin: 0;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: aliceblue;
+        border-radius: 50px;
+        font-family: 'Arial', sans-serif;
+    }
+
+    header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    h1.team-name {
+        font-size: 4em;
+        margin-top: 10px;
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 2.5em;
+        margin: 0;
+        opacity: 0.8;
+    }
+
+    section {
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.2);
+        padding: 30px;
+    }
+
+    h3 {
+        font-size: 1.5em;
+        margin: 0;
+    }
+
+    p {
+        font-size: 1.2em;
+        margin: 8px 0;
+    }
+
+    blockquote {
+        font-size: 1.2em;
+        margin: 10px 0;
+        font-style: italic;
+    }
+
+    cite {
+        font-style: normal;
+        font-size: 1em;
+        color: #000;
+    }
+
+    .spacer {
+        height: 50px;
+        /* Adjust the height of the space as needed */
+    }
+
+    .progress-section {
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.2);
+        padding: 20px;
+        border-radius: 25px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h4 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
+
+    p.progress-update {
+        font-size: 1.2em;
+        margin: 8px 0;
+    }
+
+    .progress-image {
+        max-width: 100%;
+        height: auto;
+        margin-top: 20px;
+        border-radius: 50px;
+    }
+
+    .progress-video {
+        max-width: 100%;
+        height: auto;
+        margin: 0 auto;
+        border-radius: 50px;
+    }
+
+    .two-video-container{
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        padding: 0 10px;
+    }
+
+    @media(max-width: 500px){
+        .two-video-container{
+            height: auto;
+            flex-direction: column;
+        }
+
+    }
+
+    .top-image-container {
+       padding: 10px;
+    }
+
+    .top-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .footer {
+        width: 90%;
+        margin-top: auto;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .spotify-iframe {
+        width: 100%;
+        height: 200px;
+    }
+
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+</style>
+<div id="subWindow">
+    <header>
+        <h1 class="team-name">Freshies</h1>
+        <h2>Team 5</h2>
+    </header>
+    <section>
+        <h3>Team Members</h3>
+        <p>Miguel Flores-Acton</p>
+        <p>Anshul Gupta</p>
+        <p>Andy Yu</p>
+    </section>
+    <div class="top-image-container">
+    <img class="top-image"
+        src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/03c3cf6e-4111-49c8-a2c9-26bafcf79ce1/dg2vf0n-a36c5ff6-efc7-4c73-97eb-5d0c2b377f14.png/v1/fill/w_1194,h_669,q_70,strp/drip_check_by_epicwalt_dg2vf0n-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzE4IiwicGF0aCI6IlwvZlwvMDNjM2NmNmUtNDExMS00OWM4LWEyYzktMjZiYWZjZjc5Y2UxXC9kZzJ2ZjBuLWEzNmM1ZmY2LWVmYzctNGM3My05N2ViLTVkMGMyYjM3N2YxNC5wbmciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.DamGdwT945g-UvVdG9jBOcGSGYRHYmA8wYqk4r2136o"
+        alt="Top Image">
+        </div>
+    <section>
+        <blockquote>
+            "Learn the rules like a pro, so you can break them like an artist."
+        </blockquote>
+        <cite>- Pablo Picasso</cite>
+    </section>
+    <div class="spacer"></div>
+    <div class="progress-section">
+        <h4>Progress Updates</h4>
+        <p class="progress-update">12/19: Wheel Assembly CAD</p>
+        <video class="progress-video" alt="wheel-aseembly-CAD" autoplay muted loop loading="lazy">
+            <source src="https://www.dropbox.com/scl/fi/y8ruco63epf1z579snrjq/Wheel-Assembly.mp4?rlkey=mpot92fvhu5lq366g11dzaxvl&raw=1">
+        </video>
+        <p class="progress-update">12/22: Idk what to call this</p>
+            <div class="two-video-container">
+                <div><iframe class="progress-video" src="https://www.youtube.com/embed/qdIdPBIF6MU" frameborder="0" allowfullscreen></iframe></div>
+                <div><iframe class="progress-video" src="https://www.youtube.com/embed/qdIdPBIF6MU" frameborder="0" allowfullscreen></iframe></div>
+            </div>
+        <p class="progress-update">Electrozilla has been sent to be manufactured!</p>
+        <img class="progress-image" src="https://i.ibb.co/dQPN0KC/Screenshot-2024-01-05-010847.png"
+            alt="Electorzilla Image">
+    </div>
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+    <div class="footer">
+        <iframe class="spotify-iframe" src="https://open.spotify.com/embed/track/1xsYj84j7hUDDnTTerGWlH?utm_source=generator"
+            allowfillscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const body = document.body;
+
+        function updateBackgroundPosition() {
+            const currentPosition = parseInt(getComputedStyle(body).getPropertyValue('--background-position'), 10) || 0;
+            body.style.setProperty('--background-position', currentPosition === 0 ? '100%' : '0%');
+        }
+
+        setInterval(updateBackgroundPosition, 5000);
+
+        function changeName() {
+           document.getElementsByClassName("uk-active")[0].children[0].innerText = "Team Awesome"
+        }
+
+        setTimeout(changeName, 200);
+    });
+</script>
