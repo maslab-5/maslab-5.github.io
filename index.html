@@ -1,392 +1,3 @@
-<style>
-  * {
-    border: 0;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  :root {
-    --hue: 223;
-    /* --bg: hsl(var(--hue), 10%, 90%); */
-    --bg: #f3f0f0;
-    --fg: hsl(var(--hue), 10%, 10%);
-    --primary: hsl(var(--hue), 90%, 50%);
-    --trans-dur: 0.3s;
-    --trans-timing: cubic-bezier(0.65, 0, 0.35, 1);
-    font-size: calc(16px + (24 - 16) * (100vw - 320px) / (2560 - 320));
-  }
-  a {
-    color: var(--primary);
-    transition: color var(--trans-dur);
-  }
-  body,
-  button {
-    color: var(--fg);
-    font: 1em/1.5 "IBM Plex Sans", sans-serif;
-  }
-  body {
-    background-color: var(--bg);
-    height: 100vh;
-    transition: background-color var(--trans-dur), color var(--trans-dur);
-  }
-
-  #hero {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 30px auto 50px;
-    max-width: 960px;
-    width: 100%;
-  }
-
-  #hero h1 {
-    font-size: 2em;
-  }
-
-  .btn {
-    background-color: var(--fg);
-    border-radius: 0.25em;
-    color: var(--bg);
-    cursor: pointer;
-    padding: 0.375em 0.75em;
-    transition: background-color calc(var(--trans-dur) / 2) linear,
-      color var(--trans-dur);
-    -webkit-tap-highlight-color: transparent;
-  }
-  .btn:hover {
-    background-color: hsl(var(--hue), 10%, 50%);
-  }
-  .btn-group {
-    display: flex;
-    gap: 0.375em;
-    margin-bottom: 1.5em;
-  }
-  .timeline {
-    margin: auto;
-    padding: 0 1.5em;
-    width: 100%;
-    max-width: 36em;
-  }
-  .timeline__arrow {
-    background-color: transparent;
-    border-radius: 0.25em;
-    cursor: pointer;
-    flex-shrink: 0;
-    margin-inline-end: 0.25em;
-    outline: transparent;
-    width: 2em;
-    height: 2em;
-    transition: background-color calc(var(--trans-dur) / 2) linear,
-      color var(--trans-dur);
-    -webkit-appearance: none;
-    appearance: none;
-    -webkit-tap-highlight-color: transparent;
-  }
-  .timeline__arrow:focus-visible,
-  .timeline__arrow:hover {
-    background-color: hsl(var(--hue), 10%, 50%, 0.4);
-  }
-  .timeline__arrow-icon {
-    display: block;
-    pointer-events: none;
-    transform: rotate(-90deg);
-    transition: transform var(--trans-dur) var(--trans-timing);
-    width: 100%;
-    height: auto;
-  }
-  .timeline__date {
-    font-size: 0.833em;
-    line-height: 2.4;
-  }
-  .timeline__dot {
-    background-color: currentColor;
-    border-radius: 50%;
-    display: inline-block;
-    flex-shrink: 0;
-    margin: 0.625em 0;
-    margin-inline-end: 1em;
-    position: relative;
-    width: 0.75em;
-    height: 0.75em;
-  }
-  .timeline__item {
-    position: relative;
-    padding-bottom: 2.25em;
-  }
-  .timeline__item:not(:last-child):before {
-    background-color: currentColor;
-    content: "";
-    display: block;
-    position: absolute;
-    top: 1em;
-    left: 2.625em;
-    width: 0.125em;
-    height: 100%;
-    transform: translateX(-50%);
-  }
-  [dir="rtl"] .timeline__arrow-icon {
-    transform: rotate(90deg);
-  }
-  [dir="rtl"] .timeline__item:not(:last-child):before {
-    right: 2.625em;
-    left: auto;
-    transform: translateX(50%);
-  }
-  .timeline__item-header {
-    display: flex;
-  }
-  .timeline__item-body {
-    border-radius: 0.375em;
-    overflow: hidden;
-    margin-top: 0.5em;
-    margin-inline-start: 4em;
-    height: 0;
-  }
-  .timeline__item-body-content {
-    background-color: hsl(var(--hue), 10%, 50%, 0.2);
-    opacity: 0;
-    padding: 0.5em 0.75em;
-    visibility: hidden;
-    transition: opacity var(--trans-dur) var(--trans-timing),
-      visibility var(--trans-dur) steps(1, end);
-  }
-  .timeline__meta {
-    width: 100%;
-  }
-  .timeline__title {
-    font-size: 1.5em;
-    line-height: 1.333;
-  }
-  /* Expanded state */
-  .timeline__item-body--expanded {
-    height: auto;
-  }
-  .timeline__item-body--expanded .timeline__item-body-content {
-    opacity: 1;
-    visibility: visible;
-    transition-delay: var(--trans-dur), 0s;
-  }
-  .timeline__arrow[aria-expanded="true"] .timeline__arrow-icon {
-    transform: rotate(0);
-  }
-
-  /* Dark theme */
-  /* @media (prefers-color-scheme: dark) {
-  :root {
-    --bg: hsl(var(--hue), 10%, 10%);
-    --fg: hsl(var(--hue), 10%, 90%);
-    --primary: hsl(var(--hue), 90%, 70%);
-  }
-} */
-
-  .custom-btn,
-  .custom-btn-2 {
-    font-size: 17px;
-  }
-  .custom-btn {
-    margin: 20px;
-    outline: none;
-    width: 130px;
-    height: 40px;
-    padding: 10px 25px;
-    border: 2px solid #000;
-    font-weight: 500;
-    background: transparent;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    display: inline-block;
-  }
-
-  .custom-btn-2 {
-    width: 110px;
-    height: 40px;
-    border: 2px solid var(--fg);
-    font-weight: 500;
-    background: transparent;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    display: inline-block;
-  }
-
-  .btn-6 {
-    background: var(--fg);
-    color: var(--bg);
-    line-height: 42px;
-    padding: 0;
-    border: none;
-  }
-  .btn-6 span {
-    position: relative;
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-  .btn-6:before,
-  .btn-6:after {
-    position: absolute;
-    content: "";
-    height: 0%;
-    width: 2px;
-    background: var(--fg);
-  }
-  .btn-6:before {
-    right: 0;
-    top: 0;
-    transition: all 500ms ease;
-  }
-  .btn-6:after {
-    left: 0;
-    bottom: 0;
-    transition: all 500ms ease;
-  }
-  .btn-6:hover {
-    color: var(--fg);
-    background: transparent;
-  }
-  .btn-6:hover:before {
-    transition: all 500ms ease;
-    height: 100%;
-  }
-  .btn-6:hover:after {
-    transition: all 500ms ease;
-    height: 100%;
-  }
-  .btn-6 span:before,
-  .btn-6 span:after {
-    position: absolute;
-    content: "";
-    background: var(--fg);
-  }
-  .btn-6 span:before {
-    left: 0;
-    top: 0;
-    width: 0%;
-    height: 2px;
-    transition: all 500ms ease;
-  }
-  .btn-6 span:after {
-    right: 0;
-    bottom: 0;
-    width: 0%;
-    height: 2px;
-    transition: all 500ms ease;
-  }
-  .btn-6 span:hover:before {
-    width: 100%;
-  }
-  .btn-6 span:hover:after {
-    width: 100%;
-  }
-
-  .btn-11 {
-    transition: all 0.3s ease;
-    color: var(--fg);
-  }
-  .btn-11:hover {
-    background: var(--fg);
-    color: var(--bg);
-  }
-</style>
-
-<script>
-  window.addEventListener("DOMContentLoaded", () => {
-    const ctl = new CollapsibleTimeline("#timeline");
-  });
-
-  class CollapsibleTimeline {
-    constructor(el) {
-      this.el = document.querySelector(el);
-      this.init();
-    }
-
-    init() {
-      this.el?.addEventListener("click", this.itemAction.bind(this));
-      this.expandAllItems();
-    }
-
-    expandAllItems() {
-      const items = this.el.querySelectorAll(".timeline__arrow");
-      items.forEach((button) => {
-        const itemID = button.getAttribute("data-item");
-        const ctrld = this.el.querySelector(`#item${itemID}-ctrld`);
-        if (ctrld) {
-          button.setAttribute("aria-expanded", "true");
-          ctrld.removeAttribute("aria-hidden");
-          ctrld.classList.add("timeline__item-body--expanded");
-          const content = ctrld.querySelector(".timeline__item-body-content");
-          content.style.opacity = 1;
-          content.style.visibility = "visible";
-        }
-      });
-    }
-
-    animateItemAction(button, ctrld, contentHeight, shouldCollapse) {
-      const expandedClass = "timeline__item-body--expanded";
-      const animOptions = {
-        duration: 300,
-        easing: "cubic-bezier(0.65,0,0.35,1)",
-      };
-
-      if (shouldCollapse) {
-        button.ariaExpanded = "false";
-        ctrld.ariaHidden = "true";
-        ctrld.classList.remove(expandedClass);
-        animOptions.duration *= 2;
-        this.animation = ctrld.animate(
-          [
-            { height: `${contentHeight}px` },
-            { height: `${contentHeight}px` },
-            { height: "0px" },
-          ],
-          animOptions
-        );
-      } else {
-        button.ariaExpanded = "true";
-        ctrld.ariaHidden = "false";
-        ctrld.classList.add(expandedClass);
-        this.animation = ctrld.animate(
-          [{ height: "0px" }, { height: `${contentHeight}px` }],
-          animOptions
-        );
-      }
-    }
-    itemAction(e) {
-      const { target } = e;
-      const action = target?.getAttribute("data-action");
-      const item = target?.getAttribute("data-item");
-
-      if (action) {
-        const targetExpanded = action === "expand" ? "false" : "true";
-        const buttons = Array.from(
-          this.el?.querySelectorAll(`[aria-expanded="${targetExpanded}"]`)
-        );
-        const wasExpanded = action === "collapse";
-
-        for (let button of buttons) {
-          const buttonID = button.getAttribute("data-item");
-          const ctrld = this.el?.querySelector(`#item${buttonID}-ctrld`);
-          const contentHeight = ctrld.firstElementChild?.offsetHeight;
-
-          this.animateItemAction(button, ctrld, contentHeight, wasExpanded);
-        }
-      } else if (item) {
-        const button = this.el?.querySelector(`[data-item="${item}"]`);
-        const expanded = button?.getAttribute("aria-expanded");
-
-        if (!expanded) return;
-
-        const wasExpanded = expanded === "true";
-        const ctrld = this.el?.querySelector(`#item${item}-ctrld`);
-        const contentHeight = ctrld.firstElementChild?.offsetHeight;
-
-        this.animateItemAction(button, ctrld, contentHeight, wasExpanded);
-      }
-    }
-  }
-</script>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -401,41 +12,44 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&amp;display=swap"
     />
 
+    <link rel="stylesheet" href="./style.css" />
     <title>MASLAB 2024 Team 5</title>
   </head>
+
   <body>
-    <svg display="none">
-      <symbol id="arrow">
-        <polyline
-          points="7 10,12 15,17 10"
-          fill="none"
-          stroke="currentcolor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-        />
-      </symbol>
-    </svg>
-    <div id="hero">
-      <h1>MASLAB Team 5</h1>
-      <p>Miguel Flores-Acton, Anshul Gupta, Andy Yu, Advay Goel</p>
-      <div>
-        <button
-          class="custom-btn btn-6"
-          onclick="window.open('https://github.com/theismaproject/theISMAproject/blob/main/machine%20learning/Data_Collection%2C_Processing%2C_and_Training.ipynb','_blank')"
-        >
-          <span>Github</span>
-        </button>
-        <button
-          class="custom-btn-2 btn-11"
-          onclick="window.open('https://maslab.mit.edu/2024/wiki/team05')"
-        >
-          <span>Website</span>
-        </button>
+    <div id="all-content">
+      <svg display="none">
+        <symbol id="arrow">
+          <polyline
+            points="7 10,12 15,17 10"
+            fill="none"
+            stroke="currentcolor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          />
+        </symbol>
+      </svg>
+      <div id="hero">
+        <h1>MASLAB Team 5</h1>
+        <p>Miguel Flores-Acton, Anshul Gupta, Andy Yu, Advay Goel</p>
+        <div>
+          <button
+            class="custom-btn btn-6"
+            onclick="window.open('https://github.com/theismaproject/theISMAproject/blob/main/machine%20learning/Data_Collection%2C_Processing%2C_and_Training.ipynb','_blank')"
+          >
+            <span>Github</span>
+          </button>
+          <button
+            class="custom-btn-2 btn-11"
+            onclick="window.open('https://maslab.mit.edu/2024/wiki/team05')"
+          >
+            <span>Website</span>
+          </button>
+        </div>
       </div>
-    </div>
-    <div id="timeline" class="timeline">
-      <!-- <div class="btn-group">
+      <div id="timeline" class="timeline">
+        <!-- <div class="btn-group">
         <button class="btn" type="button" data-action="expand">
           Expand All
         </button>
@@ -444,168 +58,170 @@
         </button>
       </div> -->
 
-      <div class="timeline__item">
-        <div class="timeline__item-header">
-          <button
-            class="timeline__arrow"
-            type="button"
-            aria-expanded="true"
-            id="item1"
-            data-item="1"
-          >
-            <svg
-              class="timeline__arrow-icon"
-              viewBox="0 0 24 24"
-              width="24px"
-              height="24px"
+        <div class="timeline__item">
+          <div class="timeline__item-header">
+            <button
+              class="timeline__arrow"
+              type="button"
+              aria-expanded="true"
+              id="item1"
+              data-item="1"
             >
-              <use href="#arrow" />
-            </svg>
-          </button>
-          <span class="timeline__dot"></span>
-          <span id="item1-name" class="timeline__meta">
-            <time class="timeline__date" datetime="1970-01-01"
-              >December 27th, 2023</time
-            ><br />
-            <strong class="timeline__title">PCB Design</strong>
-          </span>
-        </div>
-        <div
-          class="timeline__item-body"
-          id="item1-ctrld"
-          data-item="1-ctrld"
-          aria-hidden="false"
-        >
-          <div class="timeline__item-body-content">
-            <p class="timeline__item-p">
-              Something something making printed circuit board (PCB) and stuff
-              etc etc
-            </p>
+              <svg
+                class="timeline__arrow-icon"
+                viewBox="0 0 24 24"
+                width="24px"
+                height="24px"
+              >
+                <use href="#arrow" />
+              </svg>
+            </button>
+            <span class="timeline__dot"></span>
+            <span id="item1-name" class="timeline__meta">
+              <time class="timeline__date" datetime="1970-01-01"
+                >December 27th, 2023</time
+              ><br />
+              <strong class="timeline__title">PCB Design</strong>
+            </span>
+          </div>
+          <div
+            class="timeline__item-body"
+            id="item1-ctrld"
+            data-item="1-ctrld"
+            aria-hidden="false"
+          >
+            <div class="timeline__item-body-content">
+              <p class="timeline__item-p">
+                Something something making printed circuit board (PCB) and stuff
+                etc etc
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="timeline__item">
-        <div class="timeline__item-header">
-          <button
-            class="timeline__arrow"
-            type="button"
-            aria-expanded="true"
-            id="item2"
-            data-item="2"
-          >
-            <svg
-              class="timeline__arrow-icon"
-              viewBox="0 0 24 24"
-              width="24px"
-              height="24px"
+        <div class="timeline__item">
+          <div class="timeline__item-header">
+            <button
+              class="timeline__arrow"
+              type="button"
+              aria-expanded="true"
+              id="item2"
+              data-item="2"
             >
-              <use href="#arrow" />
-            </svg>
-          </button>
-          <span class="timeline__dot"></span>
-          <span id="item2-name" class="timeline__meta">
-            <time class="timeline__date" datetime="1970-01-01"
-              >January 3rd, 2024</time
-            ><br />
-            <strong class="timeline__title">CAD Begins</strong>
-          </span>
-        </div>
-        <div
-          class="timeline__item-body"
-          id="item2-ctrld"
-          data-item="2-ctrld"
-          aria-hidden="false"
-        >
-          <div class="timeline__item-body-content">
-            <p class="timeline__item-p">
-              Making very mid CAD on OnShape because we hate our lives and
-              stuff.
-            </p>
+              <svg
+                class="timeline__arrow-icon"
+                viewBox="0 0 24 24"
+                width="24px"
+                height="24px"
+              >
+                <use href="#arrow" />
+              </svg>
+            </button>
+            <span class="timeline__dot"></span>
+            <span id="item2-name" class="timeline__meta">
+              <time class="timeline__date" datetime="1970-01-01"
+                >January 3rd, 2024</time
+              ><br />
+              <strong class="timeline__title">CAD Begins</strong>
+            </span>
+          </div>
+          <div
+            class="timeline__item-body"
+            id="item2-ctrld"
+            data-item="2-ctrld"
+            aria-hidden="false"
+          >
+            <div class="timeline__item-body-content">
+              <p class="timeline__item-p">
+                Making very mid CAD on OnShape because we hate our lives and
+                stuff.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="timeline__item">
-        <div class="timeline__item-header">
-          <button
-            class="timeline__arrow"
-            type="button"
-            aria-expanded="true"
-            id="item3"
-            data-item="3"
-          >
-            <svg
-              class="timeline__arrow-icon"
-              viewBox="0 0 24 24"
-              width="24px"
-              height="24px"
+        <div class="timeline__item">
+          <div class="timeline__item-header">
+            <button
+              class="timeline__arrow"
+              type="button"
+              aria-expanded="true"
+              id="item3"
+              data-item="3"
             >
-              <use href="#arrow" />
-            </svg>
-          </button>
-          <span class="timeline__dot"></span>
-          <span id="item3-name" class="timeline__meta">
-            <time class="timeline__date" datetime="1970-01-01"
-              >January 8th, 2024</time
-            ><br />
-            <strong class="timeline__title">init MASLAB</strong>
-          </span>
-        </div>
-        <div
-          class="timeline__item-body"
-          id="item3-ctrld"
-          data-item="3-ctrld"
-          aria-hidden="false"
-        >
-          <div class="timeline__item-body-content">
-            <p class="timeline__item-p">
-              We get together in building 38 for the first day of MASLAB 🤖 and
-              wonder when stuff happens. Work on CAD and some basic repository
-              setup.
-            </p>
+              <svg
+                class="timeline__arrow-icon"
+                viewBox="0 0 24 24"
+                width="24px"
+                height="24px"
+              >
+                <use href="#arrow" />
+              </svg>
+            </button>
+            <span class="timeline__dot"></span>
+            <span id="item3-name" class="timeline__meta">
+              <time class="timeline__date" datetime="1970-01-01"
+                >January 8th, 2024</time
+              ><br />
+              <strong class="timeline__title">init MASLAB</strong>
+            </span>
+          </div>
+          <div
+            class="timeline__item-body"
+            id="item3-ctrld"
+            data-item="3-ctrld"
+            aria-hidden="false"
+          >
+            <div class="timeline__item-body-content">
+              <p class="timeline__item-p">
+                We get together in building 38 for the first day of MASLAB 🤖
+                and wonder when stuff happens. Work on CAD and some basic
+                repository setup.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="timeline__item">
-        <div class="timeline__item-header">
-          <button
-            class="timeline__arrow"
-            type="button"
-            aria-expanded="true"
-            id="item4"
-            data-item="4"
-          >
-            <svg
-              class="timeline__arrow-icon"
-              viewBox="0 0 24 24"
-              width="24px"
-              height="24px"
+        <div class="timeline__item">
+          <div class="timeline__item-header">
+            <button
+              class="timeline__arrow"
+              type="button"
+              aria-expanded="true"
+              id="item4"
+              data-item="4"
             >
-              <use href="#arrow" />
-            </svg>
-          </button>
-          <span class="timeline__dot"></span>
-          <span id="item4-name" class="timeline__meta">
-            <time class="timeline__date" datetime="1970-01-01"
-              >January 10th, 2024</time
-            ><br />
-            <strong class="timeline__title">Among Us</strong>
-          </span>
-        </div>
-        <div
-          class="timeline__item-body"
-          id="item4-ctrld"
-          data-item="4-ctrld"
-          aria-hidden="false"
-        >
-          <div class="timeline__item-body-content">
-            <p class="timeline__item-p">
-              We get together in building 38 for the first day of MASLAB and
-              wonder when stuff happens.
-            </p>
+              <svg
+                class="timeline__arrow-icon"
+                viewBox="0 0 24 24"
+                width="24px"
+                height="24px"
+              >
+                <use href="#arrow" />
+              </svg>
+            </button>
+            <span class="timeline__dot"></span>
+            <span id="item4-name" class="timeline__meta">
+              <time class="timeline__date" datetime="1970-01-01"
+                >January 10th, 2024</time
+              ><br />
+              <strong class="timeline__title">Among Us</strong>
+            </span>
+          </div>
+          <div
+            class="timeline__item-body"
+            id="item4-ctrld"
+            data-item="4-ctrld"
+            aria-hidden="false"
+          >
+            <div class="timeline__item-body-content">
+              <p class="timeline__item-p">
+                We get together in building 38 for the first day of MASLAB and
+                wonder when stuff happens.
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <script src="./main.js"></script>
   </body>
 </html>
