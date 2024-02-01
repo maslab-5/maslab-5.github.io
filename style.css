@@ -35,14 +35,14 @@ body {
     align-items: center;
     margin: 30px auto 50px;
     max-width: 960px;
-    width: 100%;     
+    width: 100%;
   }
-  
+
   #hero h1 {
     font-size: 2em;
   }
-  
-  
+
+
 
 .btn {
   background-color: var(--fg);
@@ -151,6 +151,27 @@ body {
   transition: opacity var(--trans-dur) var(--trans-timing),
     visibility var(--trans-dur) steps(1, end);
 }
+.timeline__item-media img{
+  border-radius: 5px;
+}
+.timeline__item-media video{
+  border-radius: 5px
+}
+.row {
+  display: flex;
+}
+.column {
+  flex: 50%;
+  padding: 5px;
+}
+.column img{
+  width: 100%;
+  border-radius: 5px;
+}
+.column video{
+  width: 100%;
+  border-radius: 5px;
+}
 .timeline__meta {
   width: 100%;
 }
@@ -185,7 +206,7 @@ body {
     font-size: 17px;
 }
 .custom-btn {
-  margin: 20px; 
+  margin: 20px;
   outline: none;
   width: 130px;
   height: 40px;
@@ -210,7 +231,7 @@ body {
     position: relative;
     display: inline-block;
   }
-    
+
 .btn-6 {
     background: var(--fg);
     color: var(--bg);
@@ -280,7 +301,7 @@ body {
   .btn-6 span:hover:after {
     width: 100%;
   }
-  
+
   .btn-11 {
     transition: all 0.3s ease;
     color: var(--fg);
@@ -289,4 +310,3 @@ body {
     background: var(--fg);
     color: var(--bg);
   }
-  
