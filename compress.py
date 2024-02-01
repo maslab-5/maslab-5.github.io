@@ -40,35 +40,34 @@ def compressVideo(vidPath):
     cap = cv2.VideoCapture(vidPath)
     split = vidPath.split("/")
 
-    if not cap.isOpened():
-        print("Error: Could not open the input video file.")
-        exit()
-
     if split[-2] not in os.listdir('Compressed/'):
         os.mkdir('Compressed/' + split[-2])
 
     output_file = 'Compressed/' + '/'.join(split[-2:])
-    fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # Change this to your desired codec
-    frame_size = (int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)))
-    frame_rate = int(cap.get(cv2.CAP_PROP_FPS))
 
-    out = cv2.VideoWriter(output_file, fourcc, frame_rate, frame_size, isColor=True)
+    # Get video details (width, height, and frames per second)
+    width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+    height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    fps = cap.get(cv2.CAP_PROP_FPS)
 
-    if not out.isOpened():
-        print("Error: Could not create the output video file.")
-        cap.release()
-        exit()
+    # Define the codec and create VideoWriter object
+    fourcc = cv2.VideoWriter_fourcc(*'avc1')  # You can use other codecs like 'XVID', 'MJPG', 'DIVX', etc.
+    out = cv2.VideoWriter(output_file, fourcc, fps, (width, height))
 
     while cap.isOpened():
         ret, frame = cap.read()
 
         if not ret:
-            break
+            break  # Break the loop if no frames are read
 
         out.write(frame)
 
+    # Release the video capture and writer objects
     cap.release()
     out.release()
+
+    # Close all OpenCV windows
+    cv2.destroyAllWindows()
 
 clearDirectory('Compressed/')
 rootdir = 'ImagesAndVideos/'
