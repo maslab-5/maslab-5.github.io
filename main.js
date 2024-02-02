@@ -109,3 +109,7 @@ class CollapsibleTimeline {
     }
   }
 }
+
+function swapImage(element, newImageSrc) {
+  element.src = newImageSrc;
+}

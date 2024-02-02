@@ -32,11 +32,11 @@
       </svg>
       <div id="hero">
         <h1>MASLAB Team 5</h1>
-        <p>Miguel Flores-Acton, Anshul Gupta, Andy Yu, Advay Goel</p>
+        <p>The Electrozilla</p>
         <div>
           <button
             class="custom-btn btn-6"
-            onclick="window.open('https://github.com/maslab-5','_blank')"
+            onclick="window.open('https://github.com/maslab-5/maslab','_blank')"
           >
             <span>Github</span>
           </button>
@@ -47,8 +47,35 @@
             <span>OnShape</span>
           </button>
         </div>
+        <div>
+        </div>
+        <div class="main-container">
+          <div class="profile-container">
+            <div class="profile">
+              <img src="ImagesAndVideos/profiles/miguel.png" alt="Miguel Flores-Acton"
+                onmouseover="swapImage(this, 'ImagesAndVideos/profiles/miguel2.png')"
+                onmouseout="swapImage(this, 'ImagesAndVideos/profiles/miguel.png')">
+              <div class="name">Miguel Flores-Acton</div>
+            </div>
+            <div class="profile">
+              <img src="ImagesAndVideos/profiles/anshul.png" alt="Anshul Gupta"
+                onmouseover="swapImage(this, 'ImagesAndVideos/profiles/anshul2.png')"
+                onmouseout="swapImage(this, 'ImagesAndVideos/profiles/anshul.png')">
+              <div class="name">Anshul Gupta</div>
+            </div>
+            <div class="profile">
+              <img src="ImagesAndVideos/profiles/andy.png" alt="Andy Yu"
+                onmouseover="swapImage(this, 'ImagesAndVideos/profiles/andy2.png')"
+                onmouseout="swapImage(this, 'ImagesAndVideos/profiles/andy.png')">
+              <div class="name">Andy Yu</div>
+            </div>            
+          </div>
+        </div>
+        
       </div>
+    
       <div id="timeline" class="timeline">
+        Timeline
         <div class="btn-group">
         <button class="btn" type="button" data-action="expand">
           Expand All
@@ -677,20 +704,27 @@
           >
             <div class="timeline__item-body-content">
               <p class="timeline__item-p">
-                We test our PCB, laser cut our base plate, and realize that HSV works better for us than RGB.
+                We test our PCB, laser cut our base plate, and realize that HSV (Hue, Saturation and Value) works better for us than RGB.
               </p>
               <div class="timeline__item-media">
+                <div class="row"> 
+                  <div class="column">
+                  <img loading="lazy" data-src="ImagesAndVideos/Jan_11/cmask.png">
+                 </div>
+                <div class="column">
+                  <img loading="lazy" data-src="ImagesAndVideos/Jan_11/hsv render.png">
+                </div>
+              </div>
                 <div class="row">
                   <div class="column">
                     <video autoplay muted loop>
                       <source src="ImagesAndVideos/Jan_11/PCBTest.mp4">
                     </video>
-                    <img loading="lazy" data-src="ImagesAndVideos/Jan_11/Laser.png">
                   </div>
                   <div class="column">
-                    <img loading="lazy" data-src="ImagesAndVideos/Jan_11/HSV.png">
-                  </div>
-                </div>
+                    <img loading="lazy" data-src="ImagesAndVideos/Jan_11/Laser.png">
+                  </div>                 
+                </div>                
               </div>
             </div>
           </div>
